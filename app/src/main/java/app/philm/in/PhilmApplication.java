@@ -39,7 +39,7 @@ public class PhilmApplication extends Application implements Injector {
         return (PhilmApplication) context.getApplicationContext();
     }
 
-    @Inject MainController mMainController;
+    @Inject MainController mMainController; //@Inject 注解实例化对象
 
     private ObjectGraph mObjectGraph;
 
@@ -47,7 +47,7 @@ public class PhilmApplication extends Application implements Injector {
     public void onCreate() {
         super.onCreate();
 
-        if (AndroidConstants.STRICT_MODE) {
+        if (AndroidConstants.STRICT_MODE) {//严格模式有利于debug
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectAll()
                     .penaltyLog()
@@ -59,7 +59,7 @@ public class PhilmApplication extends Application implements Injector {
                     .penaltyLog()
                     .build());
         }
-
+        // 注入依赖
         mObjectGraph = ObjectGraph.create(
                 new ContextProvider(this),
                 new ApplicationModule(),

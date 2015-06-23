@@ -16,12 +16,7 @@
 
 package app.philm.in;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
-
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,15 +25,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.MenuItem;
+
+import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
 
 import app.philm.in.fragments.AboutFragment;
 import app.philm.in.fragments.CancelCheckinMovieFragment;
@@ -82,8 +76,9 @@ public class AndroidDisplay implements Display {
             DrawerLayout drawerLayout) {
         mActivity = Preconditions.checkNotNull(activity, "activity cannot be null");
         mDrawerLayout = drawerLayout;
-
+        //解析系统定义的theme属性,存放到TypeValue对象中,（至于属性怎么搞，蒽，不清楚）
         mActivity.getTheme().resolveAttribute(R.attr.colorPrimaryDark, sTypedValue, true);
+
         mColorPrimaryDark = sTypedValue.data;
 
         if (mDrawerLayout != null) {
